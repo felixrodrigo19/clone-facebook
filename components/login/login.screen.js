@@ -46,6 +46,7 @@ const LoginScreen = ({ props, navigation }) => (
     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
       <View style={styles.container}>
         <Toolbar />
+
         <View style={styles.section}>
           <TextInput
             style={styles.sectionInput}

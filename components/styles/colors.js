@@ -4,6 +4,8 @@ const colors = {
   background: '#335AA6',
   err: '#BF0615',
   containerPrimary: '#F2F2F2',
+  icons: '#FFFFFF',
+  otherbackground: '#FFFFFF',
 };
 
 export default colors;
