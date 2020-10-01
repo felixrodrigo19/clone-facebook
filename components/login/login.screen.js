@@ -1,10 +1,20 @@
 import React from 'react';
-import { Text, View, StyleSheet, TextInput, Button, Field } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  Button,
+  Field,
+  Image,
+} from 'react-native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import 'yup-phone';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import styles from './login.style';
 
-const LoginScreen = (props) => (
+const LoginScreen = ({ props, navigation }) => (
   <Formik
     initialValues={{ email: '', password: '' }}
     onSubmit={(values) => console.log(values)}
@@ -33,30 +43,39 @@ const LoginScreen = (props) => (
         .required('Campo obrigatório'),
     })}>
     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
-      <View>
-        <TextInput
-          onChangeText={handleChange('email')}
-          onBlur={handleBlur('email')}
-          value={values.email}
-          placeholder="E-mail ou telefone"
-        />
-        {errors.EmailorPhone && (
-          <Text style={{ fontSize: 10, color: 'red' }}>
-            {errors.EmailorPhone}
-          </Text>
-        )}
-        <TextInput
-          secureTextEntry={true}
-          onChangeText={handleChange('password')}
-          onBlur={handleBlur('password')}
-          value={values.password}
-          placeholder="Senha"
-        />
-        {errors.password && (
-          <Text style={{ fontSize: 10, color: 'red' }}>{errors.password}</Text>
-        )}
+      <View style={styles.container}>
+        <View style={styles.section}>
+          <Image source={require('../../assets/logo-do-facebook.png')} />
 
-        <Button disabled={!isValid} onPress={handleSubmit} title="Submit" />
+          <TextInput
+            style={styles.sectionInput}
+            onChangeText={handleChange('email')}
+            onBlur={handleBlur('email')}
+            value={values.email}
+            placeholder="E-mail ou telefone"
+          />
+
+          <TextInput
+            style={styles.sectionInput}
+            secureTextEntry={true}
+            onChangeText={handleChange('password')}
+            onBlur={handleBlur('password')}
+            value={values.password}
+            placeholder="Senha"
+          />
+          {errors.password && (
+            <Text style={styles.errors}>{errors.password}</Text>
+          )}
+          {errors.EmailorPhone && (
+            <Text style={styles.errors}>{errors.EmailorPhone}</Text>
+          )}
+
+          <Button
+            disabled={!isValid}
+            onPress={() => navigation.navigate('Home')}
+            title="Submit"
+          />
+        </View>
       </View>
     )}
   </Formik>
