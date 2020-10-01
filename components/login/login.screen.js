@@ -13,6 +13,7 @@ import * as yup from 'yup';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import styles from './login.style';
+import Toolbar from './toolbar';
 
 const LoginScreen = ({ props, navigation }) => (
   <Formik
@@ -44,9 +45,8 @@ const LoginScreen = ({ props, navigation }) => (
     })}>
     {({ handleChange, handleBlur, handleSubmit, values, errors, isValid }) => (
       <View style={styles.container}>
+        <Toolbar />
         <View style={styles.section}>
-          <Image source={require('../../assets/logo-do-facebook.png')} />
-
           <TextInput
             style={styles.sectionInput}
             onChangeText={handleChange('email')}
